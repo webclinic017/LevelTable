@@ -31,6 +31,7 @@ def add_Order(full_token, action, status, trigger, sl, target, trail):
     id = order_counter
     try:
         order_list[id] = {}
+        order_list[id]['id'] = id
         order_list[id]['token'] = full_token
         order_list[id]['action'] = action
         order_list[id]['status'] = status
@@ -46,10 +47,10 @@ def add_Order(full_token, action, status, trigger, sl, target, trail):
         if not is_order_completion_running:
             threading.Thread(target=order_completion).start()
             is_order_completion_running = True
-        return {'status': 1, 'id': id, 'data': json.dumps(order_list[id])}
+        return json.dumps(order_list[id])
     except Exception as e:
         print("Error while Adding Order list ", id, str(e))
-        return {'status': 0, 'error': str(e)}
+        return {'flag': False, 'error': str(e)}
 
 
 def update_trigger(id, new_trigger):

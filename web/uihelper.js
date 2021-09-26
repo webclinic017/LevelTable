@@ -1,6 +1,10 @@
 $(document).ready( function () {
 	$('#infodiv').hide();
+	$('#tradediv').hide();
+    $('#userdiv').hide();
     $('#leveltable').DataTable();
+    set_order_data_div();
+    set_order_data_div();
 } );
 
 function login() {
@@ -9,6 +13,26 @@ function login() {
 	zpin = $('#zpin').val();
 	make_login(zid,zpass,zpin);
 }
+
+function showLevels(){
+    $('#title_text').text("LEVEL TABLE");
+    $('#tradediv').hide();
+    $('#userdiv').hide();
+    $('#infodiv').show();
+}
+function showOrders(){
+    $('#title_text').text("ORDERS TABLE");
+    $('#infodiv').hide();
+    $('#userdiv').hide();
+    $('#tradediv').show();
+}
+function showUsers(){
+    $('#title_text').text("USERS TABLE");
+    $('#infodiv').hide();
+    $('#tradediv').hide();
+    $('#userdiv').show();
+}
+
 
 function make_login(zid,zpass,zpin){
 	$('#errormsg').text('Please Wait.....');
@@ -85,8 +109,9 @@ function takeTrade(exchange,token,b1,b2,s1,s2,btnRow){
 function send_order_data(full_token,action,b1,b2,s1,s2){
     $('#errormsg').text('Please Wait.....');
     eel.add_order_data(full_token,action,b1,b2,s1,s2)(function(res) {
-        if(res==1){
-            console.log("Login success");
+        reqData = JSON.parse(res);
+        if(reqData.flag){
+            console.log(reqData);
 			$('#errormsg').text('Check Order Tag');
         }
         else{
@@ -94,4 +119,100 @@ function send_order_data(full_token,action,b1,b2,s1,s2){
 			$('#errormsg').text('Error while adding order');
         }
     })
+}
+
+
+function set_order_data_div()
+{
+    var divStr = 
+    '<div class="card">'+
+        '<div class="card-body">'+
+            '<div class="container">'+
+                '<div class="row">'+
+                    '<div class="col-sm">'+
+                        '<div class="row">'+
+                            '<div class="col-md-4">ID :</div>'+
+                            '<div class="col-md-8"><h3>12</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-4">Token :</div>'+
+                            '<div class="col-md-8"><h3>12</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-4">Action :</div>'+
+                            '<div class="col-md-8"><h3>Buy</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-4">Status :</div>'+
+                            '<div class="col-md-8"><h3>Waiting for buy</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-4">Time :</div>'+
+                            '<div class="col-md-8"><h3>12:35</h3></div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm">'+
+                        '<div class="row">'+
+                            '<div class="col-md-6">Trigger :</div>'+
+                            '<div class="col-md-6"><h3>13.45</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6">SL :</div>'+
+                            '<div class="col-md-6"><h3>13.45</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6">Target :</div>'+
+                            '<div class="col-md-6"><h3>13.45</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6">Trailing :</div>'+
+                            '<div class="col-md-6"><h3>13.45</h3></div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6">LTP :</div>'+
+                            '<div class="col-md-6"><h3>13.45</h3></div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-sm">'+
+                        '<div class="row">'+
+                            '<div class="col-md-6"><input type="number" class="form-control" id="newtrigger" placeholder="New Trigger"></div>'+
+                            '<div class="col-md-6">'+
+                                '<button type="button" class="btn btn-primary">Update</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6"><input type="number" class="form-control" id="newsl" placeholder="New SL"></div>'+
+                            '<div class="col-md-6">'+
+                                '<button type="button" class="btn btn-primary">Update</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6"><input type="number" class="form-control" id="newtarget" placeholder="New Target"></div>'+
+                            '<div class="col-md-6">'+
+                                '<button type="button" class="btn btn-primary">Update</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="row mt-3">'+
+                            '<div class="col-md-6"><input type="number" class="form-control" id="newtrailing" placeholder="New Trailing"></div>'+
+                            '<div class="col-md-6">'+
+                                '<button type="button" class="btn btn-primary">Update</button>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="row mt-4">'+
+                            '<div class="col-md-4">'+
+                                '<button type="button" class="btn btn-secondary">Cancel</button>'+
+                            '</div>'+
+                            '<div class="col-md-4">'+
+                                '<button type="button" class="btn btn-danger">Square-off</button>'+
+                            '</div>'+
+                            '<div class="col-md-4">'+
+                                '<button type="button" class="btn btn-dark">Delete</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+    $("#tradediv").prepend(divStr);
 }
