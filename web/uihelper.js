@@ -52,10 +52,46 @@ function getLevels(){
 
 function addRow(exchange,token,timeframe,candleTime,date,open,high,low,close,b1,b2,s1,s2){
 	var tableObj = $('#leveltable').DataTable();
+	var passStr = "'"+exchange+"',"+"'"+token+"',"+"'"+b1+"',"+"'"+b2+"',"+"'"+s1+"',"+"'"+s2+"'";
+	var tradeButtonTd = '<button type="button" class="btn btn-primary" onclick="takeTrade('+passStr+',this)">Trade</button>';
 	var delButtonTd = '<button type="button" class="btn btn-danger" onclick="deleteRow(this)">Remove</button>';
-	tableObj.row.add([exchange,token,timeframe,candleTime,date,open,high,low,close,b1,b2,s1,s2,delButtonTd]).draw();
+	var actionDropDown = '<select class="form-select actionSelect"><option value="Buy">Buy</option><option value="Sell">Sell</option><option value="Both">Both</option></select>';
+	tableObj.row.add([exchange,token,timeframe,candleTime,date,open,high,low,close,b1,b2,s1,s2,actionDropDown,tradeButtonTd,delButtonTd]).draw();
 }
 
 function deleteRow(btnRow) {
 	$('#leveltable').DataTable().row(btnRow.closest('tr')).remove().draw();
+}
+
+function takeTrade(exchange,token,b1,b2,s1,s2,btnRow){
+    var action = $(btnRow.closest('tr')).find('select option:selected').text();
+    var full_token = exchange+":"+token;
+    if(action=="Buy"){
+        send_order_data(full_token,"Buy",b1,b2,s1,s2);
+    }
+    else if(action=="Sell"){
+        send_order_data(full_token,"Sell",b1,b2,s1,s2);
+    }
+    else if(action=="Both"){
+        send_order_data(full_token,"Buy",b1,b2,s1,s2);
+        send_order_data(full_token,"Sell",b1,b2,s1,s2);
+    }
+    else{
+        alert("Select Action type");
+    }
+
+}
+
+function send_order_data(full_token,action,b1,b2,s1,s2){
+    $('#errormsg').text('Please Wait.....');
+    eel.add_order_data(full_token,action,b1,b2,s1,s2)(function(res) {
+        if(res==1){
+            console.log("Login success");
+			$('#errormsg').text('Check Order Tag');
+        }
+        else{
+            console.log(res);
+			$('#errormsg').text('Error while adding order');
+        }
+    })
 }

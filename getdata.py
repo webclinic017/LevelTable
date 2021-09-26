@@ -4,14 +4,17 @@ import json
 
 # make_zerodha_login('FPR292', 'Zerodha2@2@', '100599')
 
+
 def getTokenNumber(token):
     return str(kite.ltp(token)[token]['instrument_token'])
+
 
 def getTimeStr(timeframe):
     if(timeframe==1):
         return 'minute'
     else:
         return str(timeframe)+'minute'
+
 
 # ============== Candle And Level Data ====================
 def getCandleData(exeToken,timeNum,candleTimeStr):
@@ -39,9 +42,8 @@ def getCandleData(exeToken,timeNum,candleTimeStr):
         dataObj['status'] = 1
         return json.dumps(dataObj)
     except Exception as e:
-        dataObj = {}
-        dataObj['status'] = 0
-        dataObj['error'] = str(e)
+        dataObj = {'status': 0, 'error': str(e)}
+        print("Error while getting candle data, ",str(e))
         return json.dumps(dataObj)
 
 
