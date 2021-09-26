@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26a7dc06-155c-4dae-8c97-5e0a4d366609" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tradehandle.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IV-Levels.py" beforeDir="false" afterPath="$PROJECT_DIR$/IV-Levels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getdata.py" beforeDir="false" afterPath="$PROJECT_DIR$/getdata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mykite.py" beforeDir="false" afterPath="$PROJECT_DIR$/mykite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/leveltable.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/leveltable.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uihelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/uihelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tradehandle.py" beforeDir="false" afterPath="$PROJECT_DIR$/tradehandle.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
