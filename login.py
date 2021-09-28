@@ -3,6 +3,7 @@ from mykite import *
 
 kite = Zerodha()
 
+
 def make_zerodha_login(zid, zpass, zpin):
     global kite
     kite = getDataConnection(zid, zpass, zpin, kite)
