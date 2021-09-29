@@ -82,4 +82,4 @@ def remove_user_data(userId):
     return removeUser(userId)
 
 
-eel.start("leveltable.html", port=8001)
+eel.start("leveltable.html", port=8002)

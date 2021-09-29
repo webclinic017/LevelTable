@@ -136,6 +136,7 @@ def order_completion():
         for orders in list(order_list):
             check_order_conditions(order_list[orders])
             time.sleep(0.2)
+        time.sleep(0.1)
 
 
 def check_order_conditions(order_data):
@@ -172,7 +173,7 @@ def check_buy_conditions(order_data):
         print(order_data)
     elif order_data['status'] == "bought" and order_data['ltp'] >= order_data['trail_price']:
         order_data['sl'] = order_data['sl'] + order_data['trail']
-        order_data['trail_price'] = order_data['trail_price'] + order_data['trail']
+        order_data['trail_price'] = order_data['enter_price'] + order_data['trail']
         print(order_data)
 
 
@@ -194,5 +195,5 @@ def check_sell_conditions(order_data):
         print(order_data)
     elif order_data['status'] == "sold" and order_data['ltp'] <= order_data['trail_price']:
         order_data['sl'] = order_data['sl'] - order_data['trail']
-        order_data['trail_price'] = order_data['trail_price'] - order_data['trail']
+        order_data['trail_price'] = order_data['enter_price'] - order_data['trail']
         print(order_data)
