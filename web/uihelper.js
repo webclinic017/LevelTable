@@ -1,3 +1,5 @@
+const order_map = new Map();
+
 $(document).ready( function () {
 	$('#infodiv').hide();
 	$('#tradediv').hide();
@@ -246,6 +248,7 @@ function set_order_data_in_div(reqData){
     $('#'+reqData.id+'_trail').text(reqData.trail.toFixed(2));
     $('#'+reqData.id+'_ltp').text(reqData.ltp.toFixed(2));
     $('#'+reqData.id+'_entry_price').text(reqData.enter_price.toFixed(2));
+    order_map.set(reqData.id,reqData.status);
 }
 
 function updateTrigger(oid){

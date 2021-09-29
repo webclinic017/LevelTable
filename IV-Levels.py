@@ -72,4 +72,14 @@ def get_order_data(id):
     return order_data(id)
 
 
+@eel.expose
+def add_user_data(userId, password, towAuth, noOfLot):
+    return addUser(userId, password, towAuth, noOfLot)
+
+
+@eel.expose
+def remove_user_data(userId):
+    return removeUser(userId)
+
+
 eel.start("leveltable.html", port=8001)
