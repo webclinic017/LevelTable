@@ -9,6 +9,7 @@ function adduser(){
 	userpass = $('#userpass').val();
 	userpin = $('#userpin').val();
 	userlot = $('#userlot').val();
+	userlot = parseInt(userlot);
 	for (let [key, value] of order_map) {
 	    if(userid==key && value){
 	        alert("User already added");
