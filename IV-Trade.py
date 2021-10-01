@@ -25,13 +25,13 @@ def add_order_data(full_token, action, b1, b2, s1, s2, qty):
     if action == "Buy":
         status = "Waiting for trigger"
         trigger = b2
-        sl = s1
+        sl = s2
         trail = b2 - sl
         target = b2 + (2*trail)
     else:
         status = "Waiting for trigger"
         trigger = s2
-        sl = b1
+        sl = b2
         trail = sl - s2
         target = s2 - (2*trail)
     return add_Order(full_token, action, status, float(trigger), float(sl), float(target), float(trail), int(qty))
