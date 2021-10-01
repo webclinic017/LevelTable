@@ -1,14 +1,15 @@
 import datetime
-from mykite import *
+from kiteconnect import KiteConnect
 
-kite = Zerodha()
+kite = KiteConnect(api_key="")
 
 
-def make_zerodha_login(zid, zpass, zpin):
+def make_zerodha_login(api_key, access_token):
     global kite
-    kite = getDataConnection(zid, zpass, zpin, kite)
-    if kite == "e1" or kite == "e2":
-        return 0
-    else:
-        print("Login Done")
+    try:
+        kite.api_key = api_key
+        kite.set_access_token(access_token)
         return 1
+    except Exception as e:
+        return 0
+

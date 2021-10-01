@@ -8,10 +8,9 @@ $(document).ready( function () {
 } );
 
 function login() {
-	zid = $('#zid').val();
-	zpass = $('#zpass').val();
-	zpin = $('#zpin').val();
-	make_login(zid,zpass,zpin);
+	api_key = $('#apikey').val();
+	access_token = $('#accesstoken').val();
+	make_login(api_key, access_token);
 }
 
 function showLevels(){
@@ -34,9 +33,9 @@ function showUsers(){
 }
 
 
-function make_login(zid,zpass,zpin){
+function make_login(api_key, access_token){
 	$('#errormsg').text('Please Wait.....');
-    eel.make_login(zid,zpass,zpin)(function(res) {
+    eel.make_login(api_key, access_token)(function(res) {
         if(res==1){
 			$('#infodiv').show();
             console.log("Login success");

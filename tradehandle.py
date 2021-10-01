@@ -70,7 +70,7 @@ def update_trigger(id, new_trigger):
 def update_sl(id, new_sl):
     try:
         order_list[id]['sl'] = new_sl
-        pprint(order_list[id])
+        print("SL updated ",order_list[id]['sl'])
         return {'status': 1, 'sl': order_list[id]['sl']}
     except Exception as e:
         print("Error while updating SL in ", id, str(e))
@@ -80,7 +80,7 @@ def update_sl(id, new_sl):
 def update_target(id, new_target):
     try:
         order_list[id]['target'] = new_target
-        pprint(order_list[id])
+        print("target updated ",order_list[id]['target'])
         return {'status': 1, 'target': order_list[id]['target']}
     except Exception as e:
         print("Error while updating Target in ", id, str(e))
@@ -94,7 +94,7 @@ def update_trail(id, new_trail):
             order_list[id]['trail_price'] = order_list[id]['enter_price'] + order_list[id]['trail']
         if order_list[id]['action'] == "Sell":
             order_list[id]['trail_price'] = order_list[id]['enter_price'] - order_list[id]['trail']
-        pprint(order_list[id])
+        print("trail updated ",order_list[id]['trail'])
         return {'status': 1, 'trail': order_list[id]['trail']}
     except Exception as e:
         print("Error while updating Trail in ", id, str(e))
@@ -106,13 +106,13 @@ def square_off(id):
         order_list[id]['flag'] = False
         sell(order_list[id]['token'], order_list[id]['qty'])
         order_list[id]['status'] = "Square Off Manually"
-        pprint(order_list[id])
+        print("Square Off Manually ", order_list[id]['status'])
         return {'status': 1}
     elif order_list[id]['status'] == "sold":
         order_list[id]['flag'] = False
         buy(order_list[id]['token'], order_list[id]['qty'])
         order_list[id]['status'] = "Square Off Manually"
-        pprint(order_list[id])
+        print("Square Off Manually ", order_list[id]['status'])
         return {'status': 1}
     else:
         return {'status': 0}
@@ -122,7 +122,7 @@ def cancel_order(id):
     if order_list[id]['status'] == "Waiting for trigger":
         order_list[id]['flag'] = False
         order_list[id]['status'] = "Order Canceled"
-        pprint(order_list)
+        print("Order Canceled ", order_list[id]['id'])
         return {'status': 1}
     return {'status': 0}
 

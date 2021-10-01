@@ -2,8 +2,8 @@ from login import *
 from pprint import pprint
 import json
 
-# make_zerodha_login('FPR292', 'Zerodha2@2@', '100599')
-
+make_zerodha_login("ky3cmqfglvl58il2", "FqVDCt58S62ERhGcP9tQWNzdQ0cJzHPK")
+print(kite.profile())
 
 def getTokenNumber(token):
     return str(kite.ltp(token)[token]['instrument_token'])
@@ -47,4 +47,4 @@ def getCandleData(exeToken,timeNum,candleTimeStr):
         return json.dumps(dataObj)
 
 
-# print(getCandleData('NFO:BANKNIFTY2191636700PE',15,'2021-09-09 09:15'))
+print(getCandleData('NFO:BANKNIFTY21OCT37400CE',15,'2021-09-09 09:30'))
